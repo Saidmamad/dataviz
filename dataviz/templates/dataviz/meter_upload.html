@@ -1,0 +1,37 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-3">
+                <h2></h2>
+            </div>
+            <div class="col-sm-9">
+                <h1>Meter Data Upload Form </h1>
+                {% if messages %}
+                    {% for message in messages %}
+                        <div>
+            <!--                | means OR operator-->
+                            <strong>{{message|safe}}</strong>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                {{order}}
+
+                <label for="upload"> Upload a file</label> <br>
+                <small>Only accepts CSV files</small> <br>
+
+                <form action="" method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    <input type="file" id="upload" name="file" > <br> <br>
+                    <button type="submit" class="btn btn-outline-secondary">Upload</button> <br>
+                </form>
+                {% endif %}
+
+            </div>
+        </div>
+    </div>
+
+
+
+{% endblock content %}
